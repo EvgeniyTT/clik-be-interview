@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.use('/auth', auth);
 
+// TODO: Privacy by default
 router.use('/courier', authMiddleware, courier);
 router.use('/orders', authMiddleware, order);
 
