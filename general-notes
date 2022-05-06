@@ -4,4 +4,3 @@
     2.2. Rename routes to controllers
     2.3. Move creation of a server out of server.js and locate in under server directory
     2.4. Rename root server.js to index.js/main.js and keep there high level bootstrap logic
-3.

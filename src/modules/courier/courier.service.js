@@ -12,12 +12,10 @@ class CourierService {
      * @param courierId
      */
     async getCurrentOrderByCourierId(courierId) {
-        // TODO:
         const courier = CourierDao.findById(courierId);
 
         // some dummy check
         if(courier.status === 'BLOCKED') {
-            //
             throw new ForbiddenError('Courier is blocked now.');
         }
 
