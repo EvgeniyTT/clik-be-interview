@@ -10,6 +10,7 @@ const router = express.Router();
  *  2. What to do in case of multiple parallel orders for a courier? (-> potential problem for scaling)
  *  3. Missing Error handling
  *  4. ? Move deps to DI, use advanced pattern like mediator
+ *  5. ? Add params validator
  */
 router.get('/current/order/:id', async (req, res, next) => {
     try {

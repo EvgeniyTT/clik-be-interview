@@ -6,7 +6,7 @@ import { CourierDao } from '../../db/dao/courier.dao';
 
 class CourierService {
 
-    // TODO: SRP is not followed here. We need to move out validation logic out of here.
+    // TODO: SRP is not followed here.
     /**
      * Returns courier data
      * @param courierId
