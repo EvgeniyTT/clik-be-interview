@@ -1,9 +1,12 @@
 import { OrderDao } from '../../db/dao/';
 import { CourierDao } from '../../db/dao/courier.dao';
 
+// TODO: U can not import it due to a cyclic dependency
 // import { OrderService } from '../order/order.service'; // can't import it now?
 
 class CourierService {
+
+    // TODO: SRP is not followed here.
     /**
      * Returns courier data
      * @param courierId
@@ -16,10 +19,14 @@ class CourierService {
             throw new ForbiddenError('Courier is blocked now.');
         }
 
+        // TODO:
+        //  1. Rename to OrderDao.findByCourierId
+        //  2. remove await
         // let's get and return order (service-to-service communication?).
         return await OrderDao.findById(courierId);
     }
 
+    // TODO: Review and split the service into smaller pieces
     // ...
     // + 500 lines of business logic
     // ...

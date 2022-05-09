@@ -7,10 +7,12 @@ class OrderService {
      * @param orderId
      */
     async getById(orderId) {
+        // TODO: replace with `return OrderDao.findById(orderId);`
         const order = await OrderDao.findById(orderId);
         return order;
     }
 
+    // TODO: SRP is broken. Need to split it.
     /**
      * Assign nearest available courier to order
      * @param orderId
@@ -18,11 +20,14 @@ class OrderService {
     async assignNearestCourier(orderId) {
         const order = await OrderDao.findById(orderId);
 
+        // TODO: Use early return
         if(order) {
+            // TODO: Avoid hardcoded constants. Create enum\helper to check. Best scenario -> Get rid of anemic models
             if(order.status === 'READY_TO_PICKUP') {
                 const courier = await CourierService.findNearest()
 
                 if (courier.rating < 2) {
+                    // TODO: inconsistent return
                     return false;
                 }
 
@@ -36,6 +41,7 @@ class OrderService {
         throw new NotFoundError(`No order was found with ${orderId}`);
     }
 
+    // TODO: Review and split into smaller pieces
     // ...
     // + 500 lines of business logic
     // ...
@@ -49,9 +55,13 @@ class OrderService {
     async checkIntegrationStatus(orderId) {
         const constructIntegrationPath = `int/${orderId}/path`;
 
+        // TODO: Memoization? Cache? Put it in db? Optimize $?
         // very $ costly request
         const integrationData = await XIntegration.fetchComplexData(constructIntegrationPath)
 
+        // TODO:
+        //  1. Retries?
+        //  2. Request Queue? (in order not to reach out TOO_MANY_REQUEST)
         const dataStatusArr = [];
         for (const data of integrationData) {
             // this request takes from 5s-180s
